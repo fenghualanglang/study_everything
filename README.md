@@ -6,3 +6,5 @@ stydy_scrapy   学习scrapy
 
 study_auto.js   学习auto.js
 
+study_rappitmq   学习rappitmq
+
