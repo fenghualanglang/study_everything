@@ -1,0 +1,8 @@
+# scrapyd-deploy Douban -p DoubanScrapy
+;curl http://localhost:6800/schedule.json -d project=DoubanScrapy -d spider=douban
+
+;windows部署SpiderKeeper(爬虫监控)
+;pip install spiderkeeper
+;pip install scrapy_client
+;python "C:\Users\Administrator\AppData\Local\Temp\py_tornado\Lib\site-packages\scrapyd-client\scrapyd-deploy" --build-egg news.egg
+
