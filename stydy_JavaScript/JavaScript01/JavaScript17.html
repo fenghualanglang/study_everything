@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript的内建对象之date对象</title>
+		<script type="text/javascript">
+			var d=new Date();  //Thu Jun 04 2020 01:52:54 GMT+0800 (中国标准时间)
+			var d=new Date(138578123456); //Fri May 24 1974 05:55:23 GMT+0800 (中国标准时间)
+			var d=new Date(2020,6,8);   //Wed Jul 08 2020 00:00:00 GMT+0800 (中国标准时间)
+			var d=new Date(20,5);  //Tue Jun 01 1920 00:00:00 GMT+0800 (中国标准时间)
+			var d=new Date(2029,15, 31);  //Wed May 01 2030 00:00:00 GMT+0800 (中国标准时间)
+			// console.log(d);
+			
+			console.log(Date.now()) // 1970年到现在经过毫秒数    1591207461001
+			console.log(Date.parse('Wed, 03 Jun 2020 18:04:20 GMT')) // 1970年到现在经过毫秒数    1591207460000
+			console.log(Date.parse('Wed, 03 Jun 2020')) // 1970年到现在经过毫秒数    1591113600000
+			console.log(Date.UTC(2020,02,05,0,0,0)) // 1970年到现在经过毫秒数    1599609600000
+		
+			var d=new Date('2020-09-26 12:35:46')  //根据本地时间， 返回指定日期的天数 26
+			console.log(d.getFullYear()) //返回指定日期的年(四位数字年份时返回四位数字) 2020
+			console.log(d.getMonth()) //返回指定日期的月(0-11) 8
+			console.log(d.getDate()) //返回指定日期的天数 26
+			console.log(d.getDay()) //返回指定日期的星期星期中的第几天(0-6) 星期6
+			console.log(d.getHours()) //返回指定日期的点(0-23) 12
+			console.log(d.getMinutes()) //返回指定日期的分钟(0-59) 35
+			console.log(d.getSeconds()) //返回指定日期的秒(0-59) 46
+			console.log(d.getMilliseconds()) //返回指定日期的微秒 0
+			
+			console.log(d.getTime()) //返回当前毫秒数 1601094946000
+			
+			d.setFullYear('2022') //根据本地时间指定日期对象的年份   Fri Sep 11 2022 12:35:46 GMT+0800
+			d.setMonth('9')   ////根据本地时间指定日期对象月份  Tue Oct 11 2022 12:35:46 GMT+0800 (中国标准时间)
+			d.setDate('11')// 根据本地时间指定日期对象天数   Fri Sep 11 2020 12:35:46 GMT+0800 (中国标准时间)
+			d.setHours('18')// 根据本地时间指定日期对象小时  Tue Oct 11 2022 18:35:46 GMT+0800 (中国标准时间)
+			d.setHours('46')// 根据本地时间指定日期对象分钟  Tue Oct 11 2022 18:46:46 GMT+0800 (中国标准时间)
+			d.setSeconds('55')// 根据本地时间指定日期对象秒  Tue Oct 11 2022 18:46:55 GMT+0800 (中国标准时间)
+
+			d.setTime(1601091946340)//  Sat Sep 26 2020 11:45:46 GMT+0800 (中国标准时间)
+			
+			console.log(d.toString()) //返回Date一串字符串  Sat Sep 26 2020 11:45:46 GMT+0800 (中国标准时间)
+			
+			console.log(d.valueOf()) //1970到指定日期经过毫秒数    1601091946340
+			console.log(d.toJSON())  // 返回Date对象的字符串形式  2020-09-26T03:45:46.340Z
+			
+			d=new Date('2020-09-26T03:45:46.340Z') //Sat Sep 26 2020 11:45:46 GMT+0800 (中国标准时间)
+			
+			console.log(d) 
+		
+		</script>
+	</head>
+	<body>
+
+	
+	</body>
+</html>

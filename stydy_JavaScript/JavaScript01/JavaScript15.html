@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript中的对象-对象的特性</title>
+		<script type="text/javascript">
+			var persion={};
+			Object.defineProperties(persion,{
+				'username':{
+					value:'zhangsan',
+					writable:true,
+					enumerable:true,
+					configurable:true
+				},
+				'age':{
+					value:12,
+					writable:true
+				}
+			});
+			
+			console.log(persion.username) //zhangsan
+			console.log(persion['age']) //12
+			// persion对象的某个属性描述
+			console.log(Object.getOwnPropertyDescriptor(persion, 'username'));
+			//{"configurable":true,"enumerable":true,"value":"zhangsan","writable":true}
+			
+			
+			
+		</script>
+		
+		
+		
+		
+		
+		
+	</head>
+	<body>
+		<h2>javascript中的对象-对象的特特性  封装(设置多个属性)</h2>
+		<p>Object.defineProperties():在对象上添加或修改一个或者多个自有属性，并返回该对象。</p>
+		<p>语法： Object.defineProperties(obj, peops)</p>
+		<p>参数： obj 将要被添加属性或修改属性的对象；peops该对象的一个或多个键值对定义了将要为了具体添加或修改属性的具体配置</b>
+</p>
+	</body>
+</html>

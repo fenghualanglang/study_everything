@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript中的对象-属性特性描</title>
+		<script type="text/javascript">
+			var obj={};
+			obj.x=1;
+			obj.y=2;
+			obj.z=3;
+			
+			console.log(obj); //{"x":1,"y":2,"z":3}	
+			// 遍历对象获取key值
+			for(var i in obj){
+				console.log(i);
+			};
+			
+			// 输出key值 得到列表
+			console.log(Object.keys(obj))  //["x", "y", "z"]
+			console.log(Object.getOwnPropertyNames(obj)) //["x", "y", "z"]
+			
+			document.write('<hr color="red"/>');
+			
+			// 可以通过Object.defineProperty 定义对象
+			//参数一对象名，参数二定义那个属性，描述
+			var obj1={};
+			Object.defineProperty(obj1, 'x', {
+				value:12
+			});
+			console.log(obj1.x) //12
+			
+			obj1.x=123;
+			console.log(obj1.x) //12
+			// 即使重新赋值输出仍为12， 说明其值不能被修改
+			
+			
+			for(var i in obj1){
+				console.log('对象中的属性：' + p)
+			}
+			// 无法输出结果，说明其无法枚举，即不能被遍历
+			
+			console.log(Object.keys(obj1)) // []
+			// 返回的是空数组
+			
+			
+			Object.defineProperty(obj1, 'y', {
+				value:56,
+				writable:true,    //代表是否可写(是否可修改)
+				enumerable:true, // 是否可枚举
+				configurable:false // 是否可配置
+			});
+			
+			// 可以被访问到
+			console.log(obj1.y) //56 
+			// writable:true, 代表是否可写(可修改)，所以输出为64
+			obj1.y=64
+			console.log(obj1.y) //64
+			
+			// enumerable:true, // 代表值是可枚举，false不可以枚举
+			// 遍历的时候可以得到属性值
+			for(var i in obj1){
+				console.log('对象中的属性：' + i)  //64
+			}
+			
+			// 如果是不可枚举的则无法或得到属性的名字， 返回为[],
+			console.log(Object.keys(obj1)) // ['y']
+			
+			Object.defineProperty(obj1, 'z', {
+				value:'this is test',
+				writable:true,
+				enumerable:true,
+				configurable:false
+			});
+			
+			console.log(obj1.z)  // this is test
+			obj1.z='hello world!!!'
+			console.log(obj1.z)  // hello world!!!
+			
+			// configurable:false 属性不可以被配置， 此时删除不成功， 即是输出仍为hello world；
+			// configurable:true 属性可以被配置， 此时删除成功， 即是输出为undefined；
+			delete obj1.z;
+			console.log(obj1.z) // hello world!!!
+			
+			Object.defineProperty(obj1, 'k', {
+				value:'fenghuall',
+				writable:false,
+				enumerable:false,
+				configurable:true
+			});
+			console.log(obj1.k)  // fenghuall
+			obj1.k='得我着的天下!!'
+			console.log(obj1.k)  // fenghuall
+			
+			//让上述属性可以被修改, 修改上述属性writable:true
+			// 注意： configurable:true 可配置才能修改 否则无法修改writable:true属性
+			Object.defineProperty(obj1, 'k', {
+				writable:true
+			})
+			obj1.k='得我着的天下!!'
+			console.log(obj1.k)  // 得我着的天下!!
+			
+			// 检查是否可枚举，enumerable:false,  表示不可枚举
+			console.log(obj.propertyIsEnumerable('k'))   //false
+			
+			document.write('<hr color="red"/>');
+			
+			
+			
+			// 存取器  get 如果想获取属性值时，系统会自动调用get函数，获取属性值
+			var obj={};
+			Object.defineProperty(obj, 'k', {
+				get: function(){
+					return 123;
+					}
+				})
+			 
+			console.log(obj.k) //123
+			
+			document.write('<hr color="red"/>');
+			
+			var 0bj={};
+			obj.x=1
+						// 等价于
+			Object.defineProperty(0bj, 'x', {
+				value:1,
+				writable:true,
+				enumerable:true,
+				configurable:true
+			})
+			
+			document.write('<hr color="red"/>');
+			
+			Object.defineProperty(obj, 'x', {
+				value:2
+			})
+			
+			// 等价于
+			Object.defineProperty(0bj, 'x', {
+				value:1,
+				writable:false,
+				enumerable:false,
+				configurable:false
+			})
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<h2>javascript中的对象-属性特性描</h2>
+	</body>
+</html>

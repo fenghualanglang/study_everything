@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript中数组</title>
+		<script type="text/javascript">
+			var arr=[];
+			var arr=[1,2,3,4,5];
+			var arr=[1,2,3,true,null,undefined, [4,5,6],{x:1, y:2}];
+			var x=1;
+			var arr=[x, x*1, x+2, x*3]
+			// console.log(arr)
+			
+			//返回数组的长度
+			// console.log(arr.length) 
+			
+			// Array构建函数形式创建数组
+			var arr=new Array(); // 空数组[]
+			var arr=new Array(5); // 数组长度为5
+			// console.log(arr.length) 
+			
+			var arr=new Array(1,2,3, false); // 数组元素为[1, 2, 3, false]
+			// console.log(arr.length) 
+			// console.log(arr) 
+			
+			// 数组使用
+			
+			// 读取数组中的元素arr[下标]
+			var arr=[1,2,3,4];  // 1
+			// console.log(arr[0])
+			
+			// 修改数组中的元素arr[下标]=值
+			arr[2]='hello world'  // [1, 2, "hello world", 4]
+			
+			//向数组中添加元素arr[下标]=值；
+			arr[5]='fenghuall'  //[1, 2, "hello world", 4, empty, "fenghuall"]
+			
+			// 向数组中添加元素arr.push(值...):数组末尾添加元素
+			var arr=new Array();
+			arr.push('c', 1,2,3)  //["c", 1, 2, 3]
+			//向数组中添加元素.unshift(值...):数组开头添加元素
+			arr.unshift('fenghua', 'helloworld',2)  //["c", 1, 2, 3]
+			
+			// console.log(arr)
+			// 删除数组中的元素delete arr[下标]
+			var arr=['a', 'b', 'd'];
+			// delete arr[1]  // ["a", empty, "d", "e"]
+			
+			
+			// 删除数组中的元素 delete pop(): 删除数组元素
+			var res=arr.pop();
+			
+			// 删除数组中的元素arr.shift(): 删除数组开头元素
+			var res=arr.shift();    //a
+			
+			console.log(res)
+			
+			// console.log(arr)
+			 
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

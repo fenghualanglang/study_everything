@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript中的默认参数、可变参数、变量作用域</title>
+		<script type="text/javascript">
+			
+			// 实现默认参数形式
+			function calc(x, y){
+				x=x||0; //如果x有值则为x  无值默认为0
+				y=y||0;
+				return x + y
+			}
+			
+			
+				
+			function calc(x, y){
+				if (x===undefined){
+					x=0;
+				}
+				y=y===undefined?0:y;
+				return x+y
+			}
+			
+			function calc(x, y){
+				x=arguments[0]?arguments[0]:0;
+				y=arguments[1]?arguments[1]:0;
+				return x+y
+			}
+			
+			// alert(calc())
+			// alert(calc(3, 5))
+			
+			
+			// 可变参数形象
+			// 求数和
+			function test(){
+				var paramsNum=arguments.length; // 得到执行函数的个数
+				var sum=0;
+				for(var i=0; i<paramsNum;++i){
+					sum+=arguments[i]
+				}
+			return sum;
+			}
+			// alert(test(1,2,3,4,5,5,5))
+			
+			// 求最大值
+			function test1(){
+				var paramsNum=arguments.length;
+				var max=0;
+				for(var i=0;i<paramsNum-1;i++){
+					if(arguments[i]>max){
+						max=arguments[i];
+					}
+				}
+			}
+			
+			alert(test(123, 322, 675, -444))
+			
+		</script>
+	</head>
+	<body>
+		<h2>javascript中的默认参数、可变参数、变量作用域</h2>
+	</body>
+</html>

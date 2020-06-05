@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript中的全局函数-数值型函数</title>
+		<script type="text/javascript">
+			document.write(parseInt('34') + '<br />') //34
+			document.write(parseInt('3zhangsan') + '<br />'); //3
+			document.write(parseInt('zhangsan') + '<br />'); //NaN
+			document.write(parseInt(' 34 55 66') + '<br />'); //34
+			document.write(parseInt('F') + '<br />'); //NaN
+			document.write('<hr color="red"/>');
+			
+			document.write(parseInt('F', 16) + '<br />'); //15
+			document.write(parseInt('17', 8) + '<br />'); //15
+			document.write(parseInt('0xfff') + '<br />'); //4095  十六进制
+			document.write('<hr color="red"/>');
+			
+			// 二进制转换成其它进制
+			document.write(parseInt('1001010', 2) + '<br />'); //74
+			document.write(parseInt('1001010', 8) + '<br />'); //262664
+			document.write(parseInt('1001010', 10) + '<br />'); //1001010
+			document.write(parseInt('1001010', 16) + '<br />'); //16781328
+			document.write(parseInt('202', 2) + '<br />'); //NaN
+			document.write('<hr color="red"/>');
+			
+			// 转换成浮点型
+			document.write(parseFloat('3.14') + '<br />') //3.14
+			document.write(parseFloat('314') + '<br />') //314
+			document.write(parseFloat('2e2') + '<br />') //200
+			document.write(parseFloat('123abc') + '<br />') //123
+			document.write(parseFloat(' 123  ') + '<br />') //123
+			document.write(parseFloat(' abc123  ') + '<br />') //NaN
+			document.write('<hr color="red"/>');
+			
+			// 通过isFinite()检测是否是无穷值
+			var x=123;            // true
+			x=Infinity;        // 正无穷  false
+			x=-Infinity;       // 负无穷  false
+			x=0;           // true
+			x=0/0;         // false
+			x=false;         // ture
+			x=NaN;         // false
+			x=parseInt('king3');  // false
+			alert(isFinite(x))
+		</script>
+	</head>
+	<body>
+		<h2>javascript中的全局函数-数值型函数</h2>
+	</body>
+</html>

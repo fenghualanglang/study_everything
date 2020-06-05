@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript中的对象-属性相关操</title>
+		<script type="text/javascript">
+		//访问属性
+			var person={
+				username:'king',
+				age:18,
+				addr:'shanghai',
+				sex:'男'
+			}
+			
+			person.username;
+			person['username'];
+			alert(person.username);
+			console.log(person['username'])
+			console.log(post_obj)
+			function Personinfo(name, age, sex){
+				this.name=name;
+				this.age=age;
+				this.sex=sex;
+			};
+			
+			var persion1=new Personinfo('king', 3, '男');
+			console.log(persion1.name)
+		document.write('<hr color="red"/>');
+		
+		// 添加属性
+		var obj={};
+		obj.username='zhangsan';
+		obj.age='18';
+		
+		// 修改属性
+		obj.username='李四';
+		
+		//删除属性
+		delete obj.username;
+		
+		
+		//for in  遍历属性
+		
+		var person={
+			username:'king',
+			age:18,
+			addr:'shanghai',
+			sex:'男',
+			say: function(){
+				return 'hello world'
+			}
+		};
+		for(var p in person){
+			console.log(p) // key值
+		}
+		
+		var person={
+			username:'king',
+			age:18,
+			addr:'shanghai',
+			sex:'男',
+			say: function(){
+				return 'hello world'
+			},
+			info:function(){
+				return '用户名' + this.username + '年龄'+this.age;
+				}
+		}
+		
+		
+		console.log(person.info())
+		
+		
+		
+		function Person(username,age,sex,addr){
+			this.username=username,
+			this.age=age,
+			this.sex=sex,
+			this.info=function(){
+				return username + addr;
+			}
+		};
+		
+		var p1=new Person('lisi', 19, '男', '上海');
+		
+		console.log(p1.info())
+
+		</script>
+		
+	</head>
+	<body>
+		<h2>javascript中的对象-属性相关操</h2>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript中的特殊形式的函 匿名函数的应</title>
+		<script type="text/javascript">
+			
+			// 将一个函数赋值一个变量, 调用时变量名加(参数..)
+			var test=function clac(a, b){
+				return a+b
+			}
+
+			//匿名函数
+			var test = function(x,y){return x*y;};
+
+			// 回调函数
+			function calc(x,y){
+				return x()+y();
+			}
+			function test1(){
+				return 3;
+			}
+			function test2(){
+				return 4
+			}
+			
+			// alert(calc(test1, test2));
+			// alert(calc(function(){return 8;}, function(){return 7;}));
+			
+			document.write('<hr color="red"/>');
+			
+			function muit(a,b,c){
+				var i, arr=[];
+				for(i=0;i<3;i++){
+					arr[i]=arguments[i]*2
+				}
+				return arr
+			}
+			
+			function add(a){
+				return a+1;
+			}
+			
+			var arr1=[];
+			arr1 = muit(10,20,30);
+			
+			document.write('<hr color="red"/>');
+			for(var i=0;i<3;i++){
+				arr1[i]=add(arr1[i]);
+			}
+			// alert(arr1)
+			
+			function test1(a,b){
+				return a*b;
+			}
+
+			// 通过call实现test回调函数
+			alert(test1.call(test1,5,6));
+			//通过apply实现回调函数
+			var params=[3,4];
+			alert(test1.apply(test1, params))
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+		
+		
+		
+		
+		
+	</head>
+	<body>
+		<h2>javascript中的特殊形式的函 匿名函数的应</h2>
+	</body>
+</html>

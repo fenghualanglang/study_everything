@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>类型转化</title>
+		<script type="text/javascript">
+			// 布尔值
+			var test=Boolean(0);
+			test=Boolean(-0);
+			test=Boolean(undefined);
+			test=Boolean('');
+			test=Boolean(0.0);
+			test=Boolean('0');
+
+			
+			// 换成字符串类型
+			test=String(1234);
+			test=String(23.24);	
+			test=String(NaN);
+			test=String('hello world');
+			test=String(true);
+			test=String(false);
+			test=String(null);
+			test=String(undefined);
+			
+			// 其它类型转化数值型
+			test=Number(12);
+			test=Number(12.2123);
+			test=Number(true);
+			test=Number(false);
+			test=Number(undefined);
+			test=Number(NaN);
+			test=Number('3wws');
+			test=Number('12');
+			
+			// 通过parseInt()进行转换整型
+			test=parseInt('12');
+			test=parseInt('12.55');
+			test=parseInt(0xabcdef);     // 转换十六进制
+			test=parseInt(012344);   // 转换八进制
+			
+			// 通过parseFloat()进行转换布尔型
+			test=parseFloat('12');
+			test=parseFloat('88423.44snr');
+			alert(test)
+		</script>
+	</head>
+	<body>
+		<h2>类型转化</h2>
+	</body>
+</html>

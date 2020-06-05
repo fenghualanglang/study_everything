@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript中的全局函数</title>
+		<script type="text/javascript">
+			// 测试url编码函数
+			var url='https://www.baidu.com/s?wd=中国';
+			//https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD
+			var res=encodeURI(url);
+			document.write(res)
+			var res1=decodeURI(res);
+			document.write(res1)
+			//https://www.baidu.com/s?wd=中国
+			document.write('<hr color="red"/>');
+			
+			var str1='https://www.baidu.com/s?wd=中国';
+			res=escape(str1)
+			// https%3A//www.baidu.com/s%3Fwd%3D%u4E2D%u56FD
+			
+			res1=unescape(res)
+			// https://www.baidu.com/s?wd=中国
+			document.write(res)
+			document.write(res1)
+			
+			eval('var i=12')
+			// alert(i)
+			
+			
+			var str1=new Boolean(123);  // 1
+			var str1=false;  // 0
+			var str1='3zhangsan'; //NaN
+			var str1=3.14;  // 3.14
+			var str1='3.14';  // 3.14
+			var str1=undefined;//NaN
+			var str1=null;  //0
+			var str1=NaN;  //NaN
+			var str1=new Date();  //15991131249000
+			// alert(Number(str1))
+			
+			var str1=true; // true
+			var str1=false; // false
+			var str1=23; // '23'
+			var str1=3.14; // '3.14'
+			var str1=null; // 'null'
+			var str1=undefined; // 'undefined'
+			var str1=NaN; // 'NaN'
+			
+			alert(String(str1))
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<h2>javascript中的全局函数</h2>
+	</body>
+</html>
