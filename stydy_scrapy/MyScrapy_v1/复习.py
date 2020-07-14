@@ -1,9 +1,3 @@
-#coding:utf-8
-0.mongodb在scrapy中的使用
-    配置信息放在settings
-    pipelines中读取配置信息
-        from scrapy.conf import settings
-        host = settings["MONGO_HOST"]
 
 1 反爬措施
     1.1 服务器端为什么要做反爬
