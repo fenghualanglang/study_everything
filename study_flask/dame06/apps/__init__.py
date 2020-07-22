@@ -1,6 +1,7 @@
 from flask import Flask
 
 from apps.user.view import user_bp
+from apps.user.handel import handler_bp
 from exts import db, api
 from settings import DevelopmentConfig
 
@@ -13,7 +14,7 @@ def create_app():
     api.init_app(app=app)
 
     app.register_blueprint(user_bp)
-
+    app.register_blueprint(handler_bp)
     print(app.url_map)
     return app
 

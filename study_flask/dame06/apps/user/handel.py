@@ -6,12 +6,14 @@ from werkzeug.datastructures import FileStorage
 from apps.user.model import User
 from exts import api
 
-user_bp = Blueprint('user', __name__, url_prefix='/api')
+handler_bp = Blueprint('user', __name__, url_prefix='/api')
 
 # 返回数据序列化
 user_fields = {
     'id': fields.Integer,
     'username':fields.String,
+    # 自定义字段与后端映射，前端看不到数据库字段
+    # 'private_name': fields.String(attribute='username', default='zhangsan')
     'phone': fields.String,
     'create_time': fields.DateTime,
     'email': fields.String
@@ -52,9 +54,9 @@ class UserSimpleResource(Resource):
         pass
 
 # http://127.0.0.1:5000/user
-api.add_resource(UserResource, '/user')
+api.add_resource(UserResource, '/user2')
 # http://127.0.0.1:5000/user/1
-api.add_resource(UserSimpleResource, '/user/<int:uid>')
+api.add_resource(UserSimpleResource, '/user2/<int:uid>')
 
 
 
