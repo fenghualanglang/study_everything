@@ -11,7 +11,6 @@ logging.basicConfig(
 # filename = r'text.log' 日志文件名
 # filemode = 'a', 追加模式
 
-
 # asctime 输出时间
 # filename名字 默认文件名
 # levelname 错误级别
