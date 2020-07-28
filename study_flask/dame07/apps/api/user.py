@@ -1,4 +1,5 @@
 import random
+import uuid
 
 from flask import Blueprint, jsonify, session
 from flask_restful import Api, fields, marshal_with, Resource, reqparse, inputs
@@ -110,6 +111,8 @@ reset_parser.add_argument('code', type=inputs.regex(r'^[a-zA-Z0-9]{4}$'), help='
 # 重置密码
 class ResetPwdHandler(Resource):
 
+    # 加装饰器把页面缓存到redis上
+    @cache.cached(timeout=200)
     def get(self):
 
         args = reset_parser.parse_args()
@@ -125,7 +128,15 @@ class ResetPwdHandler(Resource):
 
             if ret is not None:
                 if ret['sms_code'] == 200:
-                    cache.set(phone, sms_code, timeout=1800)
+                    token = str(uuid.uuid4()).replace('-', '')
+                    cache.set(token, phone, timeout=3600)
+                    # 设置多个
+                    cache.set_many([('name', 2), ('age', 13), ('sex', 1)])
+                    # 删除单个
+                    # cache.delete(key)
+                    # cache.delete_many(key1, key2)
+                    # cache.clear()
+
                     return jsonify(status=200, msg='短信发送成功')
             return jsonify(status=400, msg='短信发送失败')
 
@@ -152,8 +163,10 @@ class PwdLoginHandler(Resource):
         user = User.query.filter(User.phone == phone).first()
         if user:
             if check_password_hash(user.password, password):
-                cache.set(phone + '_', 1)
-                return {'status': 200, 'msg': 'ok'}
+                token = str(uuid.uuid4()).replace('-', '')
+                cache.set(token, phone, timeout=3600)
+                # 使用令牌机制 token
+                return {'status': 200, 'data': {'token': 'ffhujiko'}, 'msg': 'ok'}
         return {'status': 400, 'msg': '用户名或密码错误'}
 
 

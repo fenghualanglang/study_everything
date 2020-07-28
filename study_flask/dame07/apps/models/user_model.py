@@ -38,6 +38,10 @@ class User(BaseModel):
     phone = db.Column(db.String(11), nullable=False, unique=True)
     icon = db.Column(db.String(128))
 
+    newsList = db.relationship('News', backref='author')
+
+    comments = db.relationship('Comment', backref='user')
+
     def __str__(self):
         return self.username
 
