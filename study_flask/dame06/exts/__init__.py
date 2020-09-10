@@ -9,7 +9,6 @@ from flask_restful import Api
 # 创建映射对象
 db = SQLAlchemy()
 
-
 # 创建api对象
 
 api = Api()

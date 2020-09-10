@@ -3,7 +3,7 @@ import os
 class Config:
 
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:1qaz2wsx@localhost:3306/leqiaosu"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:!QAZ2wsx#edc@localhost:3306/leqiaosu"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
     SECRET_KEY = 'wrfetgyhujyikuoilp43f5t4g6y5h7u6ji8'
