@@ -1,0 +1,28 @@
+
+
+
+### 启动两个worker来分别指定taskA、taskB，开两个窗口分别执行下面语句。
+
+'''
+celery -A tasks worker -l info -n workerA.%h -Q for_task_A
+celery -A tasks worker -l info -n workerB.%h -Q for_task_B
+
+celery -A celery_tasks.main worker -l info -n workerA%h -Q send_email -P eventlet
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

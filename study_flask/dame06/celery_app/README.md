@@ -24,3 +24,12 @@
 - 在实际应用我们需要celery在后台运行，celery提供了以linux守护进程的方式，启动方式：
     `celery multi start -A celery_app.main worker -l info -P eventlet --logfile=celery.log`
 
+
+
+
+
+<b>参考</b>
+https://blog.csdn.net/chenbogger/article/details/99308404<br>
+https://fast.v2ex.com/t/327228<br>
+https://www.jianshu.com/p/11b420aea529<br>
+https://www.cnblogs.com/shengulong/p/10994362.html<br>

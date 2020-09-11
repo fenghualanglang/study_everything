@@ -1,0 +1,48 @@
+
+
+### 启动Worker：
+
+
+
+
+# 加载配置模块
+
+from celery import Celery
+app = Celery('project')                                # 创建 Celery 实例
+app.config_from_object('project.config')               # 加载配置模块
+
+
+### 启动Worker：
+    `celery worker -A project -l debug`
+
+
+各个参数含义：
+- worker: 代表第启动的角色是work当然还有beat等其他角色；
+- -A ：项目路径，这里我的目录是project
+- -l：启动的日志级别，更多参数使用celery --help查看
+
+### 
+delay或apply_async来将任务添加到worker中，通过交互式方法添加任务，并返回AsyncResult对象
+
+AsyncResult常用方法或属性：
+   -  get:返回执行结果
+    - state: 返回任务状态；
+    - task_id: 返回任务id；
+    - result: 返回任务结果，同get()方法；
+    - ready(): 判断任务是否以及有结果，有结果为True，否则False；
+    - info(): 获取任务信息，默认为结果；
+    - wait(t): 等待t秒后获取结果，若任务执行完毕，则不等待直接获取结果，若任务在执行中，则wait期间一直阻塞，直到超时报错；
+    - successfu(): 判断任务是否成功，成功为True，否则为False；
+
+
+#### 定时任务&计划任务
+　　Celery的提供的定时任务主要靠schedules来完成，通过beat组件周期性将任务发送给woker执行。
+    新建文件task.py，并添加任务到配置文件中：
+
+```
+celery worker -A project -l debug #启动work
+celery beat -A  project.period_task -l  debug #启动beat，注意此时对应的文件路径
+```
+
+
+

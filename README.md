@@ -8,5 +8,9 @@ study_auto.js   学习auto.js
 
 study_rappitmq   学习rappitmq
 
- study_JavaScript  学习JavaScript
+study_JavaScript  学习JavaScript
+
+study_celery  学习study_celery  
+
+study_django  学习django
 
