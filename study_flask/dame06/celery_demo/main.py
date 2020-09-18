@@ -13,9 +13,9 @@ log = get_task_logger(__name__)
 sys.path.insert(0, BASE_PARH)
 
 app = Celery("demo")
-app.config_from_object("celery_tasks.config")
+app.config_from_object("celery_demo.config")
 # 定义的任务
-app.autodiscover_tasks(["celery_tasks.email_tasks", "celery_tasks.sms_tasks"])
+app.autodiscover_tasks(["celery_demo.email_tasks","celery_demo.sms_tasks"])
 
 
 '''
@@ -28,4 +28,3 @@ celery beat -A main -l info
 定时任务-启动任务队列
 celery -A main worker -l info -P eventlet
 '''
-

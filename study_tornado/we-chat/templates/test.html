@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>h5 开发websocket服务</title>
+
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: wheat;
+        }
+    </style>
+</head>
+<body>
+    <!-- 输入内容 -->
+    <input type="text" placeholder="请输入内容"/>
+
+    <!-- 发送请求 -->
+    <button>发送请求</button>
+
+    <!-- 显示结果 -->
+    <div></div>
+
+    <script>
+
+        var input = document.querySelector('input');
+        var button = document.querySelector('button');
+        var div = document.querySelector('div');
+
+
+        // websocket 如何使用
+        // h5 已经提供了websocket的api， 可以直接使用
+
+        // 1. 创建webSocket对象
+        // 参数1 websocket 的服务地址
+        var socket = new WebSocket('ws://echo.websocket.org');
+
+        // 2. open: 当和webSocket服务器连接成功时触发
+        socket.addEventListener('open', function(){
+            div.innerHTML = '连接服务成功了'
+        });
+
+        //3. 主动给websocket 服务发送消息
+        button.addEventListener('click', function(){
+            var value = input.value;
+            socket.send(value)
+        });
+        //4. 接收websocket服务的数据
+        socket.addEventListener('message', function(e){
+            console.log(e.data);
+            div.innerHTML = '<p>'+ e.data +'</p>'
+        });
+        //5. 断开连接
+        socket.addEventListener('close', function () {
+            div.innerHTML= '断开连接'
+        })
+    </script>
+
+<!--        // 监听websocket事件-->
+<!--        // open       Socket.onopen     连接建立时触发-->
+<!--        // message    socket.message  客户端接收服务端数据时触发-->
+<!--        // error      Socket.error    通信错误时触发-->
+<!--        // close      Socket.onclose  连接关闭时触发-->
+<!--        // websocket 方法-->
+<!--        // Socket.send()    使用连接发送数据-->
+
+
+
+
+</body>
+</html>

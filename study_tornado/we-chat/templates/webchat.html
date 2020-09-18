@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="contents" style="height: 500px; overflow: auto;"> </div>
+    <div>
+        <textarea id="msg"></textarea>
+        <a href="javascript:;" onclick="sendMsg()" >发送</a>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.9.1/jquery.min.js">
+        var ws = new WebSocket('ws://192.168.43.187:8000/webchatsocket');
+        ws.onmessage = function (e) {
+            $("#contents").append("<p>" + e.data + "</p>")
+        }
+        function sendMsg() {
+            var msg = $("#msg").val();
+            ws.send(msg);
+            $('#msg').val('')
+        }
+    </script>
+
+</body>
+</html>

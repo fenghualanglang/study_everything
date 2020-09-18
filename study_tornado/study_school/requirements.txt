@@ -1,0 +1,8 @@
+tornado
+python-memcached
+peewee
+simplejson
+Pillow
+marshmallow
+PyJWT
+xmltodict

@@ -1,15 +1,37 @@
 
 
 
-### 启动两个worker来分别指定taskA、taskB，开两个窗口分别执行下面语句。
+### 启动tasks任务
 
 '''
-celery -A tasks worker -l info -n workerA.%h -Q for_task_A
-celery -A tasks worker -l info -n workerB.%h -Q for_task_B
-
-celery -A celery_tasks.main worker -l info -n workerA%h -Q send_email -P eventlet
+celery worker -A tasks2  -l info -n workerA.%h  -P eventlet
 '''
 
+### RabbitMq 发布与订阅
+
+![原理实现](https://img2018.cnblogs.com/blog/1236854/201903/1236854-20190312103044651-543462222.png)
+### 模式一：fanout
+这种模式下，传递到 exchange 的消息将会转发到所有与其绑定的 queue 上。
+- 不需要指定 routing_key ，即使指定了也是无效。
+- 需要提前将 exchange 和 queue 绑定，一个 exchange 可以绑定多个 queue，一个queue可以绑定多个exchange。
+- 需要先启动 订阅者，此模式下的队列是 consumer 随机生成的，发布者 仅仅发布消息到 exchange ，由 exchange 转发消息至 queue。
+
+
+### 模式二：direct
+这种工作模式的原理是 消息发送至 exchange，exchange 根据 路由键（routing_key）转发到相对应的 queue 上。
+
+- 可以使用默认 exchange =' ' ，也可以自定义 exchange
+- 这种模式下不需要将 exchange 和 任何进行绑定，当然绑定也是可以的。可以将 exchange 和 queue ，routing_key 和 queue 进行绑定
+- 传递或接受消息时 需要 指定 routing_key
+- 需要先启动 订阅者，此模式下的队列是 consumer 随机生成的，发布者 仅仅发布消息到 exchange ，由 exchange 转发消息至 queue。
+
+### 模式三：topicd
+这种模式和第二种模式差不多，exchange 也是通过 路由键 routing_key 来转发消息到指定的 queue 。 
+不同点是 routing_key 使用正则表达式支持模糊匹配，但匹配规则又与常规的正则表达式不同，比如“#”是匹配全部，“*”是匹配一个词。
+
+举例：routing_key =“#orderid#”，意思是将消息转发至所有 routing_key 包含 “orderid” 字符的队列中。代码和模式二 类似，就不贴出来了。
+
+https://www.cnblogs.com/shenh/p/10497244.html
 
 
 
@@ -17,6 +39,26 @@ celery -A celery_tasks.main worker -l info -n workerA%h -Q send_email -P eventle
 
 
 
+
+
+
+
+
+
+Producers: 发送消息给exchange
+Exchanges: 用于路由消息（消息发给exchange，exchange发给对应的queue）。
+    路由就是比较routing-key（这个message提供）和binding-key（这个queue注册到exchange的时候提供）。
+    使用时，需要指定exchange的名称和类型（direct，topic和fanout）。
+    可以发现，和RabbitMQ中的exchange概念是一样的。
+Consumers: consumer需要声明一个queue，并将queue与指定的exchange绑定，然后从queue里面接收消息
+Queues: 接收exchange发过来的消息
+Routing keys: 每个消息在发送时都会声明一个routing_key。routing_key的含义依赖于exchange的类型
+    一般说来，在AMQP标准里定义了四种默认的exchange类型，此外，vendor还可以自定义exchange的类型
+    但是，我们下面只关注AMQP 0.8版本中定义的三种默认exchange类型，也是最常用的三类exchange
+    1. Direct exchange: 如果message的routing_key和某个consumer中的routing_key相同，就会把消息发送给这个consumer监听的queue中
+    2. Fan-out exchange: 广播模式。exchange将收到的message发送到所有与之绑定的queue中
+    3. Topic exchange: 该类型exchange会将message发送到与之routing_key类型相匹配的queue中
+    routing_key由一系列“.”隔开的word组成，“*”代表匹配任何word，“#”代表匹配0个或多个word，类似于正则表达式
 
 
 
